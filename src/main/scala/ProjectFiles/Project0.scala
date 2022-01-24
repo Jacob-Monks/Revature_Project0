@@ -17,15 +17,38 @@ object Project0 {
     return num
   }
   def main(args: Array[String]): Unit = {
+    import scala.io.StdIn._
     val check = 1
     println("Hello!")
     while(check == 1) {
       val num = Select()
       if(num == "1") {
-
+        println("Please put in some details:")
+        print("Date (YYYY-MM-DD): ")
+        val date = readLine()
+        print("Item: ")
+        val item = readLine()
+        print("Calories: ")
+        val calories = readLine()
+        print("Total Fat (in g): ")
+        val fat = readLine()
+        print("Cholesterol (in mg): ")
+        val cholesterol = readLine()
+        print("Carbohydrates (in g): ")
+        val carbs = readLine()
+        print("Sugars (in g): ")
+        val sugars = readLine()
+        print("Protein (in g): ")
+        readLine()
       }
       else if(num == "2") {
-
+        println("Please put in some details:")
+        print("Date (YYYY-MM-DD): ")
+        val date = readLine()
+        print("Activity: ")
+        val activity = readLine()
+        print("Duration (in minutes): ")
+        val minutes = readLine()
       }
       else if(num == "3") {
 
