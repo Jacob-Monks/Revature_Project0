@@ -1,5 +1,7 @@
 package ProjectFiles
 
+import scala.sys.exit
+
 object Project0 {
   //This will be a diet and fitness tracking application.
   //When the application begins, the user will say what they wish to do given several options.
@@ -76,6 +78,9 @@ object Project0 {
       }
       else if(num == "7") {
         //display the table
+      }
+      else if(num == "exit") {
+        exit
       }
       else {
         println("Please make a valid selection.\n")
