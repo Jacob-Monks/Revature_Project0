@@ -3,7 +3,7 @@ package ProjectFiles
 object Project0 {
   //This will be a diet and fitness tracking application.
   //When the application begins, the user will say what they wish to do given several options.
-  def Open(): Unit = {
+  def Select(): String = {
     println("What would you like to do?\nPlease type the option number.")
     println("1. Update Diet Record.")
     println("2. Update Exercise Record.")
@@ -12,8 +12,6 @@ object Project0 {
     println("5. View Diet Record.")
     println("6. View Exercise Record.")
     println("7. View Weight Record.")
-  }
-  def Select(): String = {
     import scala.io.StdIn._
     val num = readLine()
     return num
@@ -22,7 +20,6 @@ object Project0 {
     val check = 1
     println("Hello!")
     while(check == 1) {
-      Open()
       val num = Select()
       if(num == "1") {
 
