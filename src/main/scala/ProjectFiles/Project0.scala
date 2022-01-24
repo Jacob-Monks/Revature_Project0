@@ -15,6 +15,7 @@ object Project0 {
     println("5. View Diet Record.")
     println("6. View Exercise Record.")
     println("7. View Weight Record.")
+    println("8. Exit")
     import scala.io.StdIn._
     val num = readLine()
     return num
@@ -79,7 +80,7 @@ object Project0 {
       else if(num == "7") {
         //display the table
       }
-      else if(num == "exit") {
+      else if(num == "8") {
         exit
       }
       else {
