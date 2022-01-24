@@ -43,7 +43,7 @@ object Project0 {
 
       }
       else {
-
+        println("Please make a valid selection.")
       }
     }
   }
