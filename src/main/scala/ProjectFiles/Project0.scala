@@ -3,6 +3,7 @@ package ProjectFiles
 object Project0 {
   //This will be a diet and fitness tracking application.
   //When the application begins, the user will say what they wish to do given several options.
+  val goal = 0
   def Select(): String = {
     println("What would you like to do?\nPlease type the option number.")
     println("1. Update Diet Record.")
@@ -51,10 +52,17 @@ object Project0 {
         val minutes = readLine()
       }
       else if(num == "3") {
-
+        println("Please put in some details:")
+        print("Date (YYYY-MM-DD): ")
+        val date = readLine()
+        print("Weight: ")
+        val weight = readLine()
       }
       else if(num == "4") {
-
+        println("What is your goal?")
+        print("Pounds: ")
+        val goal = readLine()
+        println("We'll make sure you get there.\n")
       }
       else if(num == "5") {
 
@@ -66,7 +74,7 @@ object Project0 {
 
       }
       else {
-        println("Please make a valid selection.")
+        println("Please make a valid selection.\n")
       }
     }
   }
