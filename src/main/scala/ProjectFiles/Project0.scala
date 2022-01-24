@@ -25,28 +25,28 @@ object Project0 {
       Open()
       val num = Select()
       if(num == "1") {
-        println("You selected 1")
+
       }
       else if(num == "2") {
-        println("You selected 2")
+
       }
       else if(num == "3") {
-        println("You selected 3")
+
       }
       else if(num == "4") {
-        println("You selected 4")
+
       }
       else if(num == "5") {
-        println("You selected 5")
+
       }
       else if(num == "6") {
-        println("You selected 6")
+
       }
       else if(num == "7") {
-        println("You selected 7")
+
       }
       else {
-        println("Please make a valid selection.")
+
       }
     }
   }
