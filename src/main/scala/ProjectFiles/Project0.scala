@@ -41,6 +41,7 @@ object Project0 {
         val sugars = readLine()
         print("Protein (in g): ")
         readLine()
+        //insert all of these values into te table
       }
       else if(num == "2") {
         println("Please put in some details:")
@@ -50,6 +51,7 @@ object Project0 {
         val activity = readLine()
         print("Duration (in minutes): ")
         val minutes = readLine()
+        //insert these values into the table
       }
       else if(num == "3") {
         println("Please put in some details:")
@@ -57,21 +59,23 @@ object Project0 {
         val date = readLine()
         print("Weight: ")
         val weight = readLine()
+        //insert these values into the table
       }
       else if(num == "4") {
         println("What is your goal?")
         print("Pounds: ")
         val goal = readLine()
+        //read the last input in weight record and say how close they are
         println("We'll make sure you get there.\n")
       }
       else if(num == "5") {
-
+        //display the table
       }
       else if(num == "6") {
-
+        //display the table
       }
       else if(num == "7") {
-
+        //display the table
       }
       else {
         println("Please make a valid selection.\n")
