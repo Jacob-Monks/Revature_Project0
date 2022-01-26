@@ -52,108 +52,186 @@ object Project0 {
     while(check == 1) {
       val num = Select()
       if(num == "1") {
+        //===============================================updating the dietrecord=======================================
         try {
-          println("Please put in some details:")
-          print("Date (YYYY-MM-DD): ")
-          val date = readLine()
-          print("Item: ")
-          val item = readLine()
-          print("Calories: ")
-          val calories = readLine()
-          print("Total Fat (in g): ")
-          val fat = readLine()
-          print("Cholesterol (in mg): ")
-          val cholesterol = readLine()
-          print("Carbohydrates (in g): ")
-          val carbs = readLine()
-          print("Sugars (in g): ")
-          val sugars = readLine()
-          print("Protein (in g): ")
-          val protein = readInt()
-          print("Is all information entered correctly? Y/N\n")
-          val yes = readLine()
-          if(yes == "Y") {         //insert all of these values into the table
+          println("Would you like to add or delete data?")
+          println("1. Add")
+          println("2. Delete")
+          val ad = readLine()
+          if(ad == "1") {
+            //============================================adding a record to dietrecord================================
+            println("Please put in some details:")
+            print("Date (YYYY-MM-DD): ")
+            val date = readLine()
+            print("Item: ")
+            val item = readLine()
+            print("Calories: ")
+            val calories = readLine()
+            print("Total Fat (in g): ")
+            val fat = readLine()
+            print("Cholesterol (in mg): ")
+            val cholesterol = readLine()
+            print("Carbohydrates (in g): ")
+            val carbs = readLine()
+            print("Sugars (in g): ")
+            val sugars = readLine()
+            print("Protein (in g): ")
+            val protein = readLine()
+            print("Is all information entered correctly? Y/N\n")
+            val yes = readLine()
+            if(yes == "Y" || yes == "y") {
+              //=================================insert all of these values into the table=============================
+              val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+              val statement = connection.createStatement()
+              val insert = statement.executeUpdate(
+                s"""
+                   |INSERT INTO dietrecord (Day, Item, Calories, TotalFat, Cholesterol, Carbohydrates, Sugar, Protein)
+                   |VALUES ('$date', "$item", $calories, $fat, $cholesterol, $carbs, $sugars, $protein)
+                   |""".stripMargin)
+              println("Done!\n")
+            }
+            else {
+              println("Returning to main menu\n")
+            }
+          }
+          else if(ad == "2") {
+            //===================================deleting a record from dietrecord=====================================
+            println("What date is the data under?")
+            val date = readLine()
+            println("What is the name of the item?")
+            val item = readLine()
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
-            val insert = statement.executeUpdate(
+            val delete = statement.executeUpdate(
               s"""
-                 |INSERT INTO dietrecord (Day, Item, Calories, TotalFat, Cholesterol, Carbohydrates, Sugars, Protein)
-                 |VALUES ($date, $item, $calories, $fat, $cholesterol, $carbs, $sugars, $protein)
+                 |DELETE FROM dietrecord WHERE Day = '$date' AND item = "$item"
                  |""".stripMargin)
             println("Done!\n")
           }
           else {
-            println("Returning to main menu\n")
+            println("Selection was invalid, returning to main menu.\n")
           }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
-
       }
       else if(num == "2") {
+        //======================================updating the exerciserecord============================================
         try {
-          println("Please put in some details:")
-          print("Date (YYYY-MM-DD): ")
-          val date = readLine()
-          print("Activity: ")
-          val activity = readLine()
-          print("Duration (in minutes): ")
-          val minutes = readLine()
-          print("Is all information entered correctly? Y/N\n")
-          val yes = readLine()
-          if (yes == "y") {        //insert these values into the table
+          println("Would you like to add or delete data?")
+          println("1. Add")
+          println("2. Delete")
+          val ad = readLine()
+          if(ad == "1") {
+            //=======================================adding a record to exerciserecord=================================
+            println("Please put in some details:")
+            print("Date (YYYY-MM-DD): ")
+            val date = readLine()
+            print("Activity: ")
+            val activity = readLine()
+            print("Duration (in minutes): ")
+            val minutes = readLine()
+            print("Is all information entered correctly? Y/N\n")
+            val yes = readLine()
+            if (yes == "y" || yes == "Y") {
+              //===============================insert these values into the table======================================
+              val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+              val statement = connection.createStatement()
+              val insert = statement.executeUpdate(
+                s"""
+                   |INSERT INTO exerciserecord (Day, Activity, Minutes)
+                   |VALUES ('$date', "$activity", $minutes)
+                   |""".stripMargin)
+              println("Done!\n")
+            }
+            else {
+              println("Returning to main menu\n")
+            }
+          }
+          else if (ad == "2") {
+            //========================================deleting a record from exerciserecord============================
+            println("What date is the data under?")
+            val date = readLine()
+            println("What is the name of the activity?")
+            val activity = readLine()
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
-            val insert = statement.executeUpdate(
+            val delete = statement.executeUpdate(
               s"""
-                |INSERT INTO exerciserecord (Day, Activity, Minutes)
-                |VALUES ($date, $activity, $minutes)
-                |""".stripMargin)
-            println("Done!\n")
-          }
-          else {
-            println("Returning to main menu\n")
-          }
-        }
-        catch {
-          case e:InputMismatchException => println("Please insert the correct information.\n")
-        }
-      }
-      else if(num == "3") {
-        try {
-          println("Please put in some details:")
-          print("Date (YYYY-MM-DD): ")
-          val date = readLine()
-          print("Weight: ")
-          val weight = readLine()
-          print("Is all information entered correctly? Y/N\n")
-          val yes = readLine()
-          if (yes == "Y") {        //insert these values into the table
-            val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-            val statement = connection.createStatement()
-            val insert = statement.executeUpdate(
-              s"""
-                 |INSERT INTO weightrecord (Day, Pounds)
-                 |VALUES ($date, $weight)
+                 |DELETE FROM exerciserecord WHERE Day = '$date' AND Activity = "$activity"
                  |""".stripMargin)
             println("Done!\n")
           }
           else {
-            println("Returning to main menu\n")
+            println("Selection was invalid, returning to main menu.\n")
           }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
       }
+        //==========================================updating the weightrecord==========================================
+      else if(num == "3") {
+        try {
+          println("Would you like to add or delete data?")
+          println("1. Add")
+          println("2. Delete")
+          val ad = readLine()
+          if (ad == "1") {
+            //========================================adding a record to weightrecord==================================
+            println("Please put in some details:")
+            print("Date (YYYY-MM-DD): ")
+            val date = readLine()
+            print("Weight: ")
+            val weight = readLine()
+            print("Is all information entered correctly? Y/N\n")
+            val yes = readLine()
+            if (yes == "Y" || yes == "y") {
+              //===================================insert these values into the table==================================
+              val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+              val statement = connection.createStatement()
+              val insert = statement.executeUpdate(
+                s"""
+                   |INSERT INTO weightrecord (Day, Pounds)
+                   |VALUES ('$date', $weight)
+                   |""".stripMargin)
+              println("Done!\n")
+            }
+            else {
+              println("Returning to main menu\n")
+            }
+          }
+          else if (ad == "2") {
+            //====================================deleting a record from weightrecord==================================
+            println("What date is the data under?")
+            val date = readLine()
+            println("What is the weight?")
+            val pounds = readLine()
+            val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+            val statement = connection.createStatement()
+            val delete = statement.executeUpdate(
+              s"""
+                 |DELETE FROM weightrecord WHERE Day = '$date' AND Pounds = $pounds
+                 |""".stripMargin)
+            println("Done!\n")
+          }
+          else {
+            println("Selection was invalid, returning to main menu.\n")
+          }
+        }
+        catch {
+          case e:InputMismatchException => println("Please insert the correct information.\n")
+        }
+      }
+        //=========================================setting new weight goal=============================================
       else if(num == "4") {
         println("What is your goal?")
         print("Pounds: ")
         goal = readLine().toInt
-        //read the last input in weight record and say how close they are
         println("We'll make sure you get there.\n")
       }
+        //=======================================viewing from the dietrecord===========================================
       else if(num == "5") {
         //display the table
         println("What would you like to see?")
@@ -199,9 +277,9 @@ object Project0 {
         else if(sel == "5") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
           val statement = connection.createStatement()
-          val result = statement.executeQuery("SELECT Day, SUM(Sugars) FROM dietrecord GROUP BY Day")
+          val result = statement.executeQuery("SELECT Day, SUM(Sugar) FROM dietrecord GROUP BY Day")
           while(result.next()) {
-            System.out.println(result.getString("SUM(Sugars)"))
+            System.out.println(result.getString("SUM(Sugar)"))
           }
         }
         else if(sel == "6") {
@@ -216,6 +294,7 @@ object Project0 {
           println("Selection was invalid, returning to main menu.\n")
         }
       }
+        //==============================================view the exerciserecord========================================
       else if(num == "6") {
         //display the table
          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -225,17 +304,22 @@ object Project0 {
            System.out.println(result.getString(""))
          }
       }
+        //============================================view the weightrecord============================================
       else if(num == "7") {
         //display the table
         val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
         val statement = connection.createStatement()
         val result = statement.executeQuery("SELECT * FROM weightrecord")
         while(result.next()) {
-          System.out.println(result.getString(""))
+          System.out.println(result.getString("Pounds"))
         }
         val result2 = statement.executeQuery("SELECT Pounds FROM weightrecord ORDER BY Day DESC LIMIT 1")
-        val diff = goal - result2
-        println(s"You are only $diff pounds away from your goal!")
+        var pounds = ""
+        while(result2.next()) {
+          pounds = result2.getString("Pounds")
+        }
+        val diff = goal - pounds.toInt
+        println(s"You are only $diff pounds away from your goal!\n")
       }
       else if(num == "8") {
         exit
