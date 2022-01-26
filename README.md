@@ -12,6 +12,8 @@ Exercise Record:
 -	This is where the User will input any physical activity. They will input the date, type of activity (biking, running, doing reps, etc.), and duration of the activity.
 -	A possible function of the application is that the program will calculate how many calories were burned each day. This could be done by accessing a fitness database that details the function and effectiveness of each type of exercise (this may or may not be feasible given the scope and time restrictions on this project). This information would also be helpful for the User to know if they are on a calorie deficit or a surplus. The screen can even display messages such as “Good job! You are doing great!” if it notices that the User is exercising more. If the database access proves to be too much, then the application will contain an algorithm for estimating burned calories, based on the research done.
 
+Edit: Calories burned for exercises was too inconvenient to obtain, in no small part due to the fact that everybody's body creates and exerts energy at different rates.
+
 Weight Loss Record:
 
 -	The User will weigh themselves periodically, noting the date and the measurement on their scale. This is important information for all sorts of medical purposes, and it will be useful for people to show their doctors so they can properly diagnose and treat any health problems. Like the exercise table, this chart can make notices appear such as “You are getting closer to your goal!”
@@ -19,5 +21,7 @@ Weight Loss Record:
 User Interface Options:
 
 Accessing Tables to input new information.
-
+Deleting information from a table.
 Setting weight goal.
+Viewing the columns of each table.
+Exit application.
