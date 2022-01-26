@@ -51,28 +51,31 @@ object Project0 {
     while(check == 1) {
       val num = Select()
       if(num == "1") {
-        println("Please put in some details:")
-        print("Date (YYYY-MM-DD): ")
-        val date = readLine()
-        print("Item: ")
-        val item = readLine()
-        print("Calories: ")
-        val calories = readLine()
-        print("Total Fat (in g): ")
-        val fat = readLine()
-        print("Cholesterol (in mg): ")
-        val cholesterol = readLine()
-        print("Carbohydrates (in g): ")
-        val carbs = readLine()
-        print("Sugars (in g): ")
-        val sugars = readLine()
-        print("Protein (in g): ")
-        val protein = readLine()
-        //insert all of these values into the table
         try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val insert = statement.executeUpdate("INSERT INTO dietrecord")
+          println("Please put in some details:")
+          print("Date (YYYY-MM-DD): ")
+          val date = readLine()
+          print("Item: ")
+          val item = readLine()
+          print("Calories: ")
+          val calories = readLine()
+          print("Total Fat (in g): ")
+          val fat = readLine()
+          print("Cholesterol (in mg): ")
+          val cholesterol = readLine()
+          print("Carbohydrates (in g): ")
+          val carbs = readLine()
+          print("Sugars (in g): ")
+          val sugars = readLine()
+          print("Protein (in g): ")
+          val protein = readLine()
+          print("Is all information entered correctly? Y/N")
+          val yes = readLine()
+          if(yes == "Y") {         //insert all of these values into the table
+            val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+            val statement = connection.createStatement()
+            val insert = statement.executeUpdate("INSERT INTO dietrecord")
+          }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
@@ -80,36 +83,41 @@ object Project0 {
         println("Done!")
       }
       else if(num == "2") {
-        println("Please put in some details:")
-        print("Date (YYYY-MM-DD): ")
-        val date = readLine()
-        print("Activity: ")
-        val activity = readLine()
-        print("Duration (in minutes): ")
-        val minutes = readLine()
-        //insert these values into the table
         try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val insert = statement.executeUpdate("INSERT INTO exerciserecord")
+          println("Please put in some details:")
+          print("Date (YYYY-MM-DD): ")
+          val date = readLine()
+          print("Activity: ")
+          val activity = readLine()
+          print("Duration (in minutes): ")
+          val minutes = readLine()
+          print("Is all information entered correctly? Y/N")
+          val yes = readLine()
+          if (yes == "y") {        //insert these values into the table
+            val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+            val statement = connection.createStatement()
+            val insert = statement.executeUpdate("INSERT INTO exerciserecord")
+          }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
         println("Done!")
-
       }
       else if(num == "3") {
-        println("Please put in some details:")
-        print("Date (YYYY-MM-DD): ")
-        val date = readLine()
-        print("Weight: ")
-        val weight = readLine()
-        //insert these values into the table
         try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val insert = statement.executeUpdate("INSERT INTO weightrecord")
+          println("Please put in some details:")
+          print("Date (YYYY-MM-DD): ")
+          val date = readLine()
+          print("Weight: ")
+          val weight = readLine()
+          print("Is all information entered correctly? Y/N")
+          val yes = readLine()
+          if (yes == "Y") {        //insert these values into the table
+            val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+            val statement = connection.createStatement()
+            val insert = statement.executeUpdate("INSERT INTO weightrecord")
+          }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
@@ -125,45 +133,30 @@ object Project0 {
       }
       else if(num == "5") {
         //display the table
-        try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val result = statement.executeQuery("SELECT * FROM dietrecord")
-          while(result.next()) {
-            System.out.println(result.getString(""))
-          }
-        }
-        catch {
-          case e:InputMismatchException => println("Please insert the correct information.\n")
-        }
-      }
-      else if(num == "6") {
-        //display the table
-        try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val result = statement.executeQuery("SELECT * FROM exerciserecord")
-          while(result.next()) {
-            System.out.println(result.getString(""))
-          }
-        }
-        catch {
-          case e:InputMismatchException => println("Please insert the correct information.\n")
+        val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+        val statement = connection.createStatement()
+        val result = statement.executeQuery("SELECT * FROM dietrecord")
+        while(result.next()) {
+          System.out.println(result.getString(""))
         }
 
       }
+      else if(num == "6") {
+        //display the table
+         val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+         val statement = connection.createStatement()
+         val result = statement.executeQuery("SELECT * FROM exerciserecord")
+         while(result.next()) {
+           System.out.println(result.getString(""))
+         }
+      }
       else if(num == "7") {
         //display the table
-        try {
-          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-          val statement = connection.createStatement()
-          val result = statement.executeQuery("SELECT * FROM weightrecord")
-          while(result.next()) {
-            System.out.println(result.getString(""))
-          }
-        }
-        catch {
-          case e:InputMismatchException => println("Please insert the correct information.\n")
+        val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+        val statement = connection.createStatement()
+        val result = statement.executeQuery("SELECT * FROM weightrecord")
+        while(result.next()) {
+          System.out.println(result.getString(""))
         }
       }
       else if(num == "8") {
