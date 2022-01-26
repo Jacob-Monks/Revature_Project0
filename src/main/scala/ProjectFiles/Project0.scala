@@ -14,7 +14,8 @@ import scala.io.StdIn._
 
 object Project0 {
   //This will be a diet and fitness tracking application.
-  //When the application begins, the user will say what they wish to do given several options.
+  //When the application begins, the user will enter their name and password.
+  //If they are valid, the application will ask what they wish to do given several options.
   var goal: Int = 0
   def UserPass(): Int = {
     print("Username: ")
