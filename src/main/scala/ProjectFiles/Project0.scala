@@ -42,7 +42,8 @@ object Project0 {
     println("5. View Diet Record.")
     println("6. View Exercise Record.")
     println("7. View Weight Record.")
-    println("8. Exit")
+    println("8. View Daily Calories.")
+    println("9. Exit")
     import scala.io.StdIn._
     val num = readLine()
     return num
@@ -161,6 +162,14 @@ object Project0 {
         }
       }
       else if(num == "8") {
+        val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+        val statement = connection.createStatement()
+        val result = statement.executeQuery("SELECT Day, SUM(Calories) FROM dietrecord GROUP BY Day")
+        while(result.next()) {
+          System.out.println(result.getString("SUM(Calories)"))
+        }
+      }
+      else if(num == "9") {
         exit
       }
       else {
