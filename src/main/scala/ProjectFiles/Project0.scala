@@ -1,11 +1,37 @@
 package ProjectFiles
 
+import sun.jvm.hotspot.HelloWorld.e
+
+import java.lang.Exception
 import scala.sys.exit
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.Statement
+import java.sql.ResultSet
+import java.util.InputMismatchException
+import scala.util.control.Exception
+import scala.io.StdIn._
 
 object Project0 {
   //This will be a diet and fitness tracking application.
   //When the application begins, the user will say what they wish to do given several options.
   var goal: Int = 0
+  def UserPass(): Int = {
+    print("Username: ")
+    val user = readLine()
+    print("Password: ")
+    val pass = readLine()
+    if(user == "Jacob" & pass == "Monks") {
+      println("Hello!")
+      val check = 1
+      return check
+    }
+    else {
+      println("Username or Password was incorrect.")
+      val check = 0
+      return check
+    }
+  }
   def Select(): String = {
     println("What would you like to do?\nPlease type the option number.")
     println("1. Update Diet Record.")
@@ -21,9 +47,7 @@ object Project0 {
     return num
   }
   def main(args: Array[String]): Unit = {
-    import scala.io.StdIn._
-    val check = 1
-    println("Hello!")
+    val check = UserPass()
     while(check == 1) {
       val num = Select()
       if(num == "1") {
@@ -43,8 +67,20 @@ object Project0 {
         print("Sugars (in g): ")
         val sugars = readLine()
         print("Protein (in g): ")
-        readLine()
-        //insert all of these values into te table
+        val protein = readLine().toInt
+        //insert all of these values into the table
+/*
+        try {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val insert = statement.executeUpdate("INSERT INTO")
+
+        }
+        catch {
+          case e:InputMismatchException => println("Please insert the correct information.")
+        }
+
+ */
       }
       else if(num == "2") {
         println("Please put in some details:")
