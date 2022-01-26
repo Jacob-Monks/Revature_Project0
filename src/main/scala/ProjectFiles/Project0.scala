@@ -42,8 +42,7 @@ object Project0 {
     println("5. View Diet Record.")
     println("6. View Exercise Record.")
     println("7. View Weight Record.")
-    println("8. View Daily Calories.")
-    println("9. Exit")
+    println("8. Exit")
     import scala.io.StdIn._
     val num = readLine()
     return num
@@ -70,19 +69,23 @@ object Project0 {
           print("Sugars (in g): ")
           val sugars = readLine()
           print("Protein (in g): ")
-          val protein = readLine()
-          print("Is all information entered correctly? Y/N")
+          val protein = readInt()
+          print("Is all information entered correctly? Y/N\n")
           val yes = readLine()
           if(yes == "Y") {         //insert all of these values into the table
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
             val insert = statement.executeUpdate("INSERT INTO dietrecord")
+            println("Done!\n")
+          }
+          else {
+            println
           }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
-        println("Done!")
+
       }
       else if(num == "2") {
         try {
@@ -99,12 +102,15 @@ object Project0 {
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
             val insert = statement.executeUpdate("INSERT INTO exerciserecord")
+            println("Done!\n")
+          }
+          else {
+            println
           }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
-        println("Done!")
       }
       else if(num == "3") {
         try {
@@ -119,12 +125,15 @@ object Project0 {
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
             val insert = statement.executeUpdate("INSERT INTO weightrecord")
+            println("Done!\n")
+          }
+          else {
+            println
           }
         }
         catch {
           case e:InputMismatchException => println("Please insert the correct information.\n")
         }
-        println("Done!")
       }
       else if(num == "4") {
         println("What is your goal?")
@@ -135,13 +144,65 @@ object Project0 {
       }
       else if(num == "5") {
         //display the table
-        val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-        val statement = connection.createStatement()
-        val result = statement.executeQuery("SELECT * FROM dietrecord")
-        while(result.next()) {
-          System.out.println(result.getString(""))
+        println("What would you like to see?")
+        println("1. Calories per day.")
+        println("2. Total Fat per day.")
+        println("3. Cholesterol per day.")
+        println("4. Carbohydrates per day.")
+        println("5. Sugar per day.")
+        println("6. Protein per day.")
+        val sel = readLine()
+        if(sel == "1") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(Calories) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(Calories)"))
+          }
         }
-
+        else if(sel == "2") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(TotalFat) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(TotalFat)"))
+          }
+        }
+        else if(sel == "3") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(Cholesterol) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(Cholesterol)"))
+          }
+        }
+        else if(sel == "4") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(Carbohydrates) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(Carbohydrates)"))
+          }
+        }
+        else if(sel == "5") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(Sugars) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(Sugars)"))
+          }
+        }
+        else if(sel == "6") {
+          val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
+          val statement = connection.createStatement()
+          val result = statement.executeQuery("SELECT Day, SUM(Protein) FROM dietrecord GROUP BY Day")
+          while(result.next()) {
+            System.out.println(result.getString("SUM(Protein)"))
+          }
+        }
+        else {
+          println("Selection was invalid, returning to main menu.\n")
+        }
       }
       else if(num == "6") {
         //display the table
@@ -160,16 +221,9 @@ object Project0 {
         while(result.next()) {
           System.out.println(result.getString(""))
         }
+        val result2 = statement.executeQuery("SELECT Pounds FROM weightrecord WHERE Day = MAX(Day)")
       }
       else if(num == "8") {
-        val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
-        val statement = connection.createStatement()
-        val result = statement.executeQuery("SELECT Day, SUM(Calories) FROM dietrecord GROUP BY Day")
-        while(result.next()) {
-          System.out.println(result.getString("SUM(Calories)"))
-        }
-      }
-      else if(num == "9") {
         exit
       }
       else {
