@@ -75,11 +75,15 @@ object Project0 {
           if(yes == "Y") {         //insert all of these values into the table
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
-            val insert = statement.executeUpdate("INSERT INTO dietrecord")
+            val insert = statement.executeUpdate(
+              s"""
+                 |INSERT INTO dietrecord (Day, Item, Calories, TotalFat, Cholesterol, Carbohydrates, Sugars, Protein)
+                 |VALUES ($date, $item, $calories, $fat, $cholesterol, $carbs, $sugars, $protein)
+                 |""".stripMargin)
             println("Done!\n")
           }
           else {
-            println
+            println("Returning to main menu\n")
           }
         }
         catch {
@@ -96,16 +100,20 @@ object Project0 {
           val activity = readLine()
           print("Duration (in minutes): ")
           val minutes = readLine()
-          print("Is all information entered correctly? Y/N")
+          print("Is all information entered correctly? Y/N\n")
           val yes = readLine()
           if (yes == "y") {        //insert these values into the table
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
-            val insert = statement.executeUpdate("INSERT INTO exerciserecord")
+            val insert = statement.executeUpdate(
+              s"""
+                |INSERT INTO exerciserecord (Day, Activity, Minutes)
+                |VALUES ($date, $activity, $minutes)
+                |""".stripMargin)
             println("Done!\n")
           }
           else {
-            println
+            println("Returning to main menu\n")
           }
         }
         catch {
@@ -119,16 +127,20 @@ object Project0 {
           val date = readLine()
           print("Weight: ")
           val weight = readLine()
-          print("Is all information entered correctly? Y/N")
+          print("Is all information entered correctly? Y/N\n")
           val yes = readLine()
           if (yes == "Y") {        //insert these values into the table
             val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
             val statement = connection.createStatement()
-            val insert = statement.executeUpdate("INSERT INTO weightrecord")
+            val insert = statement.executeUpdate(
+              s"""
+                 |INSERT INTO weightrecord (Day, Pounds)
+                 |VALUES ($date, $weight)
+                 |""".stripMargin)
             println("Done!\n")
           }
           else {
-            println
+            println("Returning to main menu\n")
           }
         }
         catch {
@@ -221,7 +233,9 @@ object Project0 {
         while(result.next()) {
           System.out.println(result.getString(""))
         }
-        val result2 = statement.executeQuery("SELECT Pounds FROM weightrecord WHERE Day = MAX(Day)")
+        val result2 = statement.executeQuery("SELECT Pounds FROM weightrecord ORDER BY Day DESC LIMIT 1")
+        val diff = goal - result2
+        println(s"You are only $diff pounds away from your goal!")
       }
       else if(num == "8") {
         exit
