@@ -301,7 +301,7 @@ object Project0 {
          val statement = connection.createStatement()
          val result = statement.executeQuery("SELECT * FROM exerciserecord")
          while(result.next()) {
-           System.out.println(result.getString(""))
+           System.out.println(result.getString("Activity"))
          }
       }
         //============================================view the weightrecord============================================
