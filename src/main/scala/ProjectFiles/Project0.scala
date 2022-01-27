@@ -248,7 +248,9 @@ object Project0 {
           val result = statement.executeQuery("SELECT Day, SUM(Calories) FROM dietrecord GROUP BY Day")
           while(result.next()) {
             System.out.println(result.getString("SUM(Calories)"))
+
           }
+          println("Done!\n")
         }
         else if(sel == "2") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -257,6 +259,7 @@ object Project0 {
           while(result.next()) {
             System.out.println(result.getString("SUM(TotalFat)"))
           }
+          println("Done!\n")
         }
         else if(sel == "3") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -265,6 +268,7 @@ object Project0 {
           while(result.next()) {
             System.out.println(result.getString("SUM(Cholesterol)"))
           }
+          println("Done!\n")
         }
         else if(sel == "4") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -273,6 +277,7 @@ object Project0 {
           while(result.next()) {
             System.out.println(result.getString("SUM(Carbohydrates)"))
           }
+          println("Done!\n")
         }
         else if(sel == "5") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -281,6 +286,7 @@ object Project0 {
           while(result.next()) {
             System.out.println(result.getString("SUM(Sugar)"))
           }
+          println("Done!\n")
         }
         else if(sel == "6") {
           val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project0", "root", "CW987rq2#")
@@ -289,6 +295,7 @@ object Project0 {
           while(result.next()) {
             System.out.println(result.getString("SUM(Protein)"))
           }
+          println("Done!\n")
         }
         else {
           println("Selection was invalid, returning to main menu.\n")
